@@ -1,10 +1,13 @@
 package com.example.sessaoexercicios.sessaoexercicios.sessaoexercicios;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private SQLiteDatabase bancoDeDados;
     private ListView listViewDados;
 
+    private Button botaoCadastrar;
+
     private final Logger logger = Logger.getLogger(String.valueOf(MainActivity.class));
 
     @Override
@@ -29,9 +34,22 @@ public class MainActivity extends AppCompatActivity {
 
         listViewDados = (ListView) findViewById(R.id.listViewDados);
 
+        botaoCadastrar = (Button) findViewById(R.id.btnCadastrarExercicios);
+
+        botaoCadastrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                abrirTelaCadastro();
+            }
+        });
+
         criarBancoDados();
-        popularDados();
         listarDados();
+    }
+
+    private void abrirTelaCadastro() {
+        Intent intent = new Intent(this, CadastroActivity.class);
+        startActivity(intent);
     }
 
     private void listarDados() {
@@ -99,31 +117,5 @@ public class MainActivity extends AppCompatActivity {
 
     private void OpenOrCreateBancoDados() {
         bancoDeDados = openOrCreateDatabase("academiaApp", MODE_PRIVATE, null);
-    }
-
-    private void popularDados(){
-        try {
-            logger.info("Popoluando banco de dados");
-            OpenOrCreateBancoDados();
-
-//            String sqlDelete = "delete from academia";
-//            SQLiteStatement stmtDelete = bancoDeDados.compileStatement(sqlDelete);
-//            stmtDelete.execute();
-
-            String sql = "INSERT INTO academia (tipo,nome_exercicio,serie,sessao) values(?,?,?,?)";
-            SQLiteStatement stmt = bancoDeDados.compileStatement(sql);
-
-            stmt.bindString(1, "Superior");
-            stmt.bindString(2, "Supino Reto");
-            stmt.bindLong(3, 4l);
-            stmt.bindLong(4, 10L);
-
-            stmt.executeInsert();
-
-            bancoDeDados.close();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
     }
 }

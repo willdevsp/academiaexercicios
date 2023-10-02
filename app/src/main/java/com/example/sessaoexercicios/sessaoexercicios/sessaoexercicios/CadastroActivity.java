@@ -70,7 +70,7 @@ public class CadastroActivity extends AppCompatActivity {
                 exercicio.setSerie(serie.getText().toString());
             }
             if(!TextUtils.isEmpty(sessao.getText().toString())){
-                exercicio.setSerie(sessao.getText().toString());
+                exercicio.setSessao(sessao.getText().toString());
             }
 
             String sql = "INSERT INTO academia (tipo,nome_exercicio,serie,sessao) values(?,?,?,?)";

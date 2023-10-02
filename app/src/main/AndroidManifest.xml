@@ -17,6 +17,10 @@
             android:parentActivityName=".sessaoexercicios.sessaoexercicios.MainActivity"
             android:exported="false" />
         <activity
+            android:name=".sessaoexercicios.sessaoexercicios.CategoriaActivity"
+            android:parentActivityName=".sessaoexercicios.sessaoexercicios.MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".sessaoexercicios.sessaoexercicios.MainActivity"
             android:exported="true">
             <intent-filter>

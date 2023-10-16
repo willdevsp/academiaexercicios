@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Exercicio {
     private int id;
-    private String tipo;
+    private Categoria categoria;
     private String nomeExercicio;
     private String serie;
     private String sessao;
@@ -19,12 +19,12 @@ public class Exercicio {
         this.id = id;
     }
 
-    public String getTipo() {
-        return tipo;
+    public Categoria getCategoria() {
+        return categoria;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 
     public String getNomeExercicio() {
@@ -69,6 +69,6 @@ public class Exercicio {
 
     @Override
     public String toString() {
-        return String.format("Tipo: %s | Exercicio: %s",tipo, nomeExercicio);
+        return nomeExercicio;
     }
 }
